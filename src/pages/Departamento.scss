@@ -1,0 +1,45 @@
+.departments-container {
+    text-align: center;
+    padding: 2rem;
+  
+    .categories-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+  
+      .category-card {
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        padding: 1rem;
+        text-align: center;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        transition: transform 0.2s ease-in-out;
+  
+        &:hover {
+          transform: scale(1.05);
+        }
+  
+        .category-image {
+          width: 100%;
+          height: auto;
+          border-radius: 10px;
+        }
+  
+        .shop-button {
+          margin-top: 1rem;
+          padding: 0.5rem 1rem;
+          background-color: #e63946;
+          color: white;
+          border: none;
+          border-radius: 5px;
+          cursor: pointer;
+  
+          &:hover {
+            background-color: #d62839;
+          }
+        }
+      }
+    }
+  }
+  
