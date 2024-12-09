@@ -5,8 +5,10 @@
     .categories-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      max-width: calc(4 * 200px + 3 * 1.5rem); // Máximo 4 columnas con gap
       gap: 1.5rem;
       margin-top: 2rem;
+      margin: 2rem auto; // Centra el grid horizontalmente
   
       .category-card {
         border: 1px solid #ddd;
