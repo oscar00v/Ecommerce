@@ -33,7 +33,8 @@ function Departamentos() {
               />
             )}
             <button className="shop-button">Shop Now</button>
-          </div>
+          </div>//falta implementar un filto o que nos lleve a una pagina con todos los productos de la misma categoria
+          
         ))}
       </div>
     </div>

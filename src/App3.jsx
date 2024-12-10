@@ -5,16 +5,20 @@ import Navbar from './Components/Navbar/Navbar.jsx';
 import Home from './pages/Home.jsx';
 import Departamentos from './pages/Departamentos.jsx';
 import Login from './pages/Login.jsx';
-
+import Dashboard from './pages/Dashboard.jsx';
+import { AuthProvider } from './context/AuthContext';
 import RoutesIndex from './routes/RoutesIndex.jsx'
 
 function App3() {
     return (
-        <ItemProvider>
-            <Router>
-                <RoutesIndex /> {/* Importa las rutas desde RoutesIndex */}
-            </Router>
-        </ItemProvider>
+        <AuthProvider>
+            <ItemProvider>
+                <Router>
+                    <RoutesIndex /> {/* Importa las rutas desde RoutesIndex */}
+                </Router>
+            </ItemProvider>
+        </AuthProvider>
+
     );
 }
 
