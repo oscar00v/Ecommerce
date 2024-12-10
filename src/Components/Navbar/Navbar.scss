@@ -3,15 +3,13 @@ $menu-color: rgb(0, 221, 255);
 @mixin header-link {
     color: white;
     text-decoration: none;
-    justify-content: space-between; //* Para separar logo y la lista de navegación
-    align-items: center;//*
     letter-spacing: 2px;
 }
 
 .header {
     background-color: $menu-color;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-between; // Espaciado entre el logo y la lista de navegación
     align-items: center;
     padding: 10px 30px;
 
@@ -21,15 +19,12 @@ $menu-color: rgb(0, 221, 255);
 
     &__nav-list {
         display: flex;
-        flex-grow:3;
-        justify-content: space-between;
-        flex-wrap: wrap;
-        text-decoration: none;
+        gap: 30px; // Espacio entre los elementos de navegación
         list-style: none;
-        gap: 15px;
-        margin-left: 25px; // Opcional, para separar un poco del logo
+        margin: 0; // Resetea márgenes
+        padding: 0; // Resetea padding
     }
-    
+
     &__item-link {
         @include header-link;
 
@@ -44,6 +39,55 @@ $menu-color: rgb(0, 221, 255);
         }
     }
 }
+
+
+
+// $menu-color: rgb(0, 221, 255);
+
+// @mixin header-link {
+//     color: white;
+//     text-decoration: none;
+//     justify-content: space-between; //* Para separar logo y la lista de navegación
+//     align-items: center;//*
+//     letter-spacing: 2px;
+// }
+
+// .header {
+//     background-color: $menu-color;
+//     display: flex;
+//     justify-content: space-between;
+//     align-items: center;
+//     padding: 10px 30px;
+
+//     &__logo {
+//         @include header-link;
+//     }
+
+//     &__nav-list {
+//         display: flex;
+//         flex-grow:3;
+//         justify-content: space-between;
+//         flex-wrap: wrap;
+//         text-decoration: none;
+//         list-style: none;
+//         gap: 15px;
+//         margin-left: 25px; // Opcional, para separar un poco del logo
+//     }
+    
+//     &__item-link {
+//         @include header-link;
+
+//         &:hover {
+//             border-bottom: solid 2px #ffffff; // Subrayado al pasar el ratón
+//             color: black;
+//         }
+
+//         &--is-active {
+//             border-bottom: solid 2px #ffffff; // Subrayado del activo
+//             color: rgb(0, 0, 0); // Cambiar el color cuando está activo
+//         }
+//     }
+// }
 
 
 

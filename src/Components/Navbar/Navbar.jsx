@@ -36,6 +36,19 @@ function Navbar() {
         </li>
         <li className='header__list-item'>
           <NavLink 
+            to="/singup" 
+            className={({ isActive }) => 
+              isActive 
+                ? 'header__item-link header__item-link--is-active' 
+                : 'header__item-link'
+            }
+          >
+            Singup
+          </NavLink>
+        </li>
+
+        <li className='header__list-item'>
+          <NavLink 
             to="/login" 
             className={({ isActive }) => 
               isActive 
