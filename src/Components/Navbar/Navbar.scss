@@ -1,3 +1,4 @@
+
 $menu-color: rgb(0, 221, 255);
 
 @mixin header-link {
@@ -6,10 +7,11 @@ $menu-color: rgb(0, 221, 255);
     letter-spacing: 2px;
 }
 
+
 .header {
     background-color: $menu-color;
     display: flex;
-    justify-content: space-between; // Espaciado entre el logo y la lista de navegación
+    justify-content: space-between;
     align-items: center;
     padding: 10px 30px;
 
@@ -38,7 +40,82 @@ $menu-color: rgb(0, 221, 255);
             color: rgb(0, 0, 0); // Cambiar el color cuando está activo
         }
     }
+
+    &__logout-btn {
+        background-color: white;
+        color: $menu-color;
+        border: 2px solid $menu-color;
+        padding: 5px 15px;
+        border-radius: 5px;
+        font-size: 14px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+
+        &:hover {
+            background-color: $menu-color;
+            color: white;
+        }
+    }
 }
+
+
+
+// $menu-color: rgb(0, 221, 255);
+
+// @mixin header-link {
+//     color: white;
+//     text-decoration: none;
+//     letter-spacing: 2px;
+// }
+
+// .header {
+//     background-color: $menu-color;
+//     display: flex;
+//     justify-content: space-between; // Espaciado entre el logo y la lista de navegación
+//     align-items: center;
+//     padding: 10px 30px;
+
+//     &__logo {
+//         @include header-link;
+//     }
+
+//     &__nav-list {
+//         display: flex;
+//         gap: 30px; // Espacio entre los elementos de navegación
+//         list-style: none;
+//         margin: 0; // Resetea márgenes
+//         padding: 0; // Resetea padding
+//     }
+
+//     &__item-link {
+//         @include header-link;
+
+//         &:hover {
+//             border-bottom: solid 2px #ffffff; // Subrayado al pasar el ratón
+//             color: black;
+//         }
+
+//         &--is-active {
+//             border-bottom: solid 2px #ffffff; // Subrayado del activo
+//             color: rgb(0, 0, 0); // Cambiar el color cuando está activo
+//         }
+//     }
+//     &__logout-btn {
+//         background-color: white;
+//         color: $menu-color;
+//         border: 2px solid $menu-color;
+//         padding: 5px 15px;
+//         border-radius: 5px;
+//         font-size: 14px;
+//         cursor: pointer;
+//         transition: all 0.3s ease;
+
+//         &:hover {
+//             background-color: $menu-color;
+//             color: white;
+//         }
+//     }
+// }
 
 
 
