@@ -1,5 +1,6 @@
 import { useContext, useState } from 'react';
 import { ItemContext } from '../context/ItemsContext';
+import { Link } from 'react-router-dom'; // Importa Link
 import './Departamento.scss';
 
 function Departamentos() {
@@ -20,7 +21,7 @@ function Departamentos() {
   };
 
   const handleBackToDepartments = () => {
-    setSelectedCategory(null);  // Vuelve a mostrar las categorías
+    setSelectedCategory(null); // Vuelve a mostrar las categorías
   };
 
   return (
@@ -44,7 +45,11 @@ function Departamentos() {
                 />
                 <h2>{item.product_name}</h2>
                 <p className="price">Precio: ${item.price}</p>
-              </div>
+                {/* Botón "Ver Detalles" con navegación */}
+                <Link to={`/product/${item.id}`}>
+                  <button>Ver Detalles</button>
+                </Link>
+              </div>//!
             ))}
           </div>
         </div>
@@ -66,7 +71,7 @@ function Departamentos() {
                 className="shop-button"
                 onClick={() => handleSeeMore(category)} // Actualiza la categoría seleccionada
               >
-                See More
+                More
               </button>
             </div>
           ))}
