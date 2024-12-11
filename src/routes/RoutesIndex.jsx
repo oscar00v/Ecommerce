@@ -6,6 +6,7 @@ import Dashboard from "../pages/Dashboard";
 import Navbar from "../Components/Navbar/Navbar";
 import Signup from "../pages/Singup";
 import ProductDetail from "../pages/ProductDetails"; // Importar el nuevo componente
+import AddProduct from '../pages/AddProduct';
 
 const RoutesIndex = () => {
     // const { isAuth } = useAuthContext()
@@ -16,10 +17,11 @@ const RoutesIndex = () => {
             <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/departamento" element={<Departamentos />} />
-                <Route path="dashboard" element={<Dashboard/>}/>
+                <Route path="/dashboard" element={<Dashboard />} />
                 <Route path="/singup" element={<Signup />} />
                 <Route path="/login" element={<Login />} />
-                <Route path="/product/:id" element={<ProductDetail />} /> {/* Nueva ruta */}
+                <Route path="/product/:id" element={<ProductDetail />} />
+                <Route path="/add-product" element={<AddProduct />} /> {/* Nueva ruta */}
             </Routes>
         </>
     );

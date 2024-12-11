@@ -1,108 +1,318 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
-import { useAuthContext } from '../../hooks/useAuth'; // Ajusta la ruta si es necesario
+import { useAuthContext } from '../../hooks/useAuth';
+import { useContext } from 'react';
+import { ItemContext } from '../../context/ItemsContext'; // Importamos el contexto de items
 import './Navbar.scss';
 
 function Navbar() {
-  const { isAuth, logout } = useAuthContext();
+  const { isAuth, role, logout } = useAuthContext();
+  const { setSearchQuery } = useContext(ItemContext); // Contexto de items para actualizar la búsqueda
+  const [searchTerm, setSearchTerm] = useState('');
   const navigate = useNavigate();
 
   const handleLogout = () => {
-    logout(); // Llama a la función logout del contexto
-    navigate('/'); // Redirige al usuario al home o login
+    logout();
+    navigate('/');
+  };
+
+  const handleSearchChange = (e) => {
+    setSearchTerm(e.target.value);
+    setSearchQuery(e.target.value); // Actualizamos el término de búsqueda en el contexto
   };
 
   return (
-    <nav className='header'>
-      <NavLink to="/" className='header__logo'>
-        LOGO
-      </NavLink>
-
-      <ul className='header__nav-list'>
-        <li className='header__list-item'>
+    <nav className="header">
+      <NavLink to="/" className="header__logo">LOGO</NavLink>
+      <ul className="header__nav-list">
+        <li className="header__list-item">
           <NavLink 
             to="/" 
-            className={({ isActive }) => 
-              isActive 
-                ? 'header__item-link header__item-link--is-active' 
-                : 'header__item-link'
-            }
+            className={({ isActive }) => isActive ? 'header__item-link header__item-link--is-active' : 'header__item-link'}
           >
             Home
           </NavLink>
         </li>
-        <li className='header__list-item'>
+        <li className="header__list-item">
           <NavLink 
             to="/departamento" 
-            className={({ isActive }) => 
-              isActive 
-                ? 'header__item-link header__item-link--is-active' 
-                : 'header__item-link'
-            }
+            className={({ isActive }) => isActive ? 'header__item-link header__item-link--is-active' : 'header__item-link'}
           >
             Departamento
           </NavLink>
         </li>
-
+        {role === 'ADMIN' && (
+          <li className="header__list-item">
+            <NavLink 
+              to="/add-product" 
+              className={({ isActive }) => isActive ? 'header__item-link header__item-link--is-active' : 'header__item-link'}
+            >
+              Agregar Producto
+            </NavLink>
+          </li>
+        )}
         {!isAuth ? (
-          // Mostrar estos enlaces si NO está autenticado
           <>
-            <li className='header__list-item'>
+            <li className="header__list-item">
               <NavLink 
-                to="/singup" 
-                className={({ isActive }) => 
-                  isActive 
-                    ? 'header__item-link header__item-link--is-active' 
-                    : 'header__item-link'
-                }
+                to="/signup" 
+                className={({ isActive }) => isActive ? 'header__item-link header__item-link--is-active' : 'header__item-link'}
               >
                 Signup
               </NavLink>
             </li>
-            <li className='header__list-item'>
+            <li className="header__list-item">
               <NavLink 
                 to="/login" 
-                className={({ isActive }) => 
-                  isActive 
-                    ? 'header__item-link header__item-link--is-active' 
-                    : 'header__item-link'
-                }
+                className={({ isActive }) => isActive ? 'header__item-link header__item-link--is-active' : 'header__item-link'}
               >
                 Login
               </NavLink>
             </li>
           </>
         ) : (
-          // Mostrar este enlace si está autenticado
           <>
-          <li className='header__list-item'>
+            <li className="header__list-item">
               <NavLink 
                 to="/dashboard" 
-                className={({ isActive }) => 
-                  isActive 
-                    ? 'header__item-link header__item-link--is-active' 
-                    : 'header__item-link'
-                }
+                className={({ isActive }) => isActive ? 'header__item-link header__item-link--is-active' : 'header__item-link'}
               >
                 Dashboard
               </NavLink>
             </li> 
-            <li className='header__list-item'>
+            <li className="header__list-item">
               <button 
                 onClick={handleLogout} 
-                className='header__item-link header__logout-btn'
+                className="header__item-link header__logout-btn"
               >
-                {}Logout
+                Logout
               </button>
             </li>
           </>
         )}
       </ul>
+      <input 
+        type="text" 
+        placeholder="Buscar productos..." 
+        value={searchTerm} 
+        onChange={handleSearchChange} 
+        className="search-bar"
+      />
     </nav>
   );
 }
 
 export default Navbar;
+
+
+// ////!
+// import React from 'react';
+// import { NavLink, useNavigate } from 'react-router-dom';
+// import { useAuthContext } from '../../hooks/useAuth';
+// import './Navbar.scss';
+
+// function Navbar() {
+//   const { isAuth, role, logout } = useAuthContext(); // Incluir el rol
+//   const navigate = useNavigate();
+
+//   const handleLogout = () => {
+//     logout();
+//     navigate('/');
+//   };
+
+//   return (
+//     <nav className="header">
+//       <NavLink to="/" className="header__logo">LOGO</NavLink>
+//       <ul className="header__nav-list">
+//         <li className="header__list-item">
+//           <NavLink 
+//             to="/" 
+//             className={({ isActive }) => 
+//               isActive ? 'header__item-link header__item-link--is-active' : 'header__item-link'
+//             }
+//           >
+//             Home
+//           </NavLink>
+//         </li>
+//         <li className="header__list-item">
+//           <NavLink 
+//             to="/departamento" 
+//             className={({ isActive }) => 
+//               isActive ? 'header__item-link header__item-link--is-active' : 'header__item-link'
+//             }
+//           >
+//             Departamento
+//           </NavLink>
+//         </li>
+//         {role === 'ADMIN' && (
+//           <li className="header__list-item">
+//             <NavLink 
+//               to="/add-product" 
+//               className={({ isActive }) => 
+//                 isActive ? 'header__item-link header__item-link--is-active' : 'header__item-link'
+//               }
+//             >
+//               Agregar Producto
+//             </NavLink>
+//           </li>
+//         )}
+//         {!isAuth ? (
+//           <>
+//             <li className="header__list-item">
+//               <NavLink 
+//                 to="/singup" 
+//                 className={({ isActive }) => 
+//                   isActive ? 'header__item-link header__item-link--is-active' : 'header__item-link'
+//                 }
+//               >
+//                 Signup
+//               </NavLink>
+//             </li>
+//             <li className="header__list-item">
+//               <NavLink 
+//                 to="/login" 
+//                 className={({ isActive }) => 
+//                   isActive ? 'header__item-link header__item-link--is-active' : 'header__item-link'
+//                 }
+//               >
+//                 Login
+//               </NavLink>
+//             </li>
+//           </>
+//         ) : (
+//           <>
+//             <li className="header__list-item">
+//               <NavLink 
+//                 to="/dashboard" 
+//                 className={({ isActive }) => 
+//                   isActive ? 'header__item-link header__item-link--is-active' : 'header__item-link'
+//                 }
+//               >
+//                 Dashboard
+//               </NavLink>
+//             </li> 
+//             <li className="header__list-item">
+//               <button 
+//                 onClick={handleLogout} 
+//                 className="header__item-link header__logout-btn"
+//               >
+//                 Logout
+//               </button>
+//             </li>
+//           </>
+//         )}
+//       </ul>
+//     </nav>
+//   );
+// }
+
+// export default Navbar;
+// ////!
+// import React from 'react';
+// import { NavLink, useNavigate } from 'react-router-dom';
+// import { useAuthContext } from '../../hooks/useAuth'; // Ajusta la ruta si es necesario
+// import './Navbar.scss';
+
+// function Navbar() {
+//   const { isAuth, logout } = useAuthContext();
+//   const navigate = useNavigate();
+
+//   const handleLogout = () => {
+//     logout(); // Llama a la función logout del contexto
+//     navigate('/'); // Redirige al usuario al home o login
+//   };
+
+//   return (
+//     <nav className='header'>
+//       <NavLink to="/" className='header__logo'>
+//         LOGO
+//       </NavLink>
+
+//       <ul className='header__nav-list'>
+//         <li className='header__list-item'>
+//           <NavLink 
+//             to="/" 
+//             className={({ isActive }) => 
+//               isActive 
+//                 ? 'header__item-link header__item-link--is-active' 
+//                 : 'header__item-link'
+//             }
+//           >
+//             Home
+//           </NavLink>
+//         </li>
+//         <li className='header__list-item'>
+//           <NavLink 
+//             to="/departamento" 
+//             className={({ isActive }) => 
+//               isActive 
+//                 ? 'header__item-link header__item-link--is-active' 
+//                 : 'header__item-link'
+//             }
+//           >
+//             Departamento
+//           </NavLink>
+//         </li>
+
+//         {!isAuth ? (
+//           // Mostrar estos enlaces si NO está autenticado
+//           <>
+//             <li className='header__list-item'>
+//               <NavLink 
+//                 to="/singup" 
+//                 className={({ isActive }) => 
+//                   isActive 
+//                     ? 'header__item-link header__item-link--is-active' 
+//                     : 'header__item-link'
+//                 }
+//               >
+//                 Signup
+//               </NavLink>
+//             </li>
+//             <li className='header__list-item'>
+//               <NavLink 
+//                 to="/login" 
+//                 className={({ isActive }) => 
+//                   isActive 
+//                     ? 'header__item-link header__item-link--is-active' 
+//                     : 'header__item-link'
+//                 }
+//               >
+//                 Login
+//               </NavLink>
+//             </li>
+//           </>
+//         ) : (
+//           // Mostrar este enlace si está autenticado
+//           <>
+//           <li className='header__list-item'>
+//               <NavLink 
+//                 to="/dashboard" 
+//                 className={({ isActive }) => 
+//                   isActive 
+//                     ? 'header__item-link header__item-link--is-active' 
+//                     : 'header__item-link'
+//                 }
+//               >
+//                 Dashboard
+//               </NavLink>
+//             </li> 
+//             <li className='header__list-item'>
+//               <button 
+//                 onClick={handleLogout} 
+//                 className='header__item-link header__logout-btn'
+//               >
+//                 {}Logout
+//               </button>
+//             </li>
+//           </>
+//         )}
+//       </ul>
+//     </nav>
+//   );
+// }
+
+// export default Navbar;
 
 
 // import React from 'react';
