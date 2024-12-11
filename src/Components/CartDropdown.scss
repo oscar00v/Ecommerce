@@ -1,0 +1,52 @@
+/* General Dropdown Styles */
+.cart-dropdown {
+    position: absolute;
+    top: 50px;
+    right: 10px;
+    width: 250px;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+  }
+  
+  /* Cart items inside dropdown */
+  .cart-items {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    max-height: 300px;
+    overflow-y: auto; /* Scroll if too many items */
+  }
+  
+  /* Cart item style */
+  .cart-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+
+  .cart-item img {
+    width: 50px; /* Cambia el tamaño según lo necesites */
+    height: auto; /* Mantiene la relación de aspecto de la imagen */
+    margin-right: 10px; /* Opcional, para dejar un espacio entre la imagen y el texto */
+  }
+  
+  /* Button to view cart */
+  .view-cart-btn {
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+  }
+  
+  .view-cart-btn:hover {
+    background-color: #0056b3;
+  }
+  

@@ -8,9 +8,11 @@ import Login from './pages/Login.jsx';
 import Dashboard from './pages/Dashboard.jsx';
 import { AuthProvider } from './context/AuthContext';
 import RoutesIndex from './routes/RoutesIndex.jsx'
+import { CartProvider } from './context/CartContext.jsx';
 
 function App3() {
     return (
+        <CartProvider>
         <AuthProvider>
             <ItemProvider>
                 <Router>
@@ -18,6 +20,7 @@ function App3() {
                 </Router>
             </ItemProvider>
         </AuthProvider>
+        </CartProvider>
 
     );
 }
